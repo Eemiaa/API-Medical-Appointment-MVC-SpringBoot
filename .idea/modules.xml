@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/API-Medical-Appointment-MVC-SpringBoot.iml" filepath="$PROJECT_DIR$/.idea/API-Medical-Appointment-MVC-SpringBoot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/consulta/consulta.iml" filepath="$PROJECT_DIR$/consulta/consulta.iml" />
     </modules>
   </component>
 </project>

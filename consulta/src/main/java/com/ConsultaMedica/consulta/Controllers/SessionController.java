@@ -1,6 +1,8 @@
 package com.ConsultaMedica.consulta.Controllers;
 
-import com.ConsultaMedica.consulta.Dtos.UsuarioDto;
+import com.ConsultaMedica.consulta.Dtos.MedicoDto;
+import com.ConsultaMedica.consulta.Dtos.PacienteDto;
+import com.ConsultaMedica.consulta.Dtos.SecretariaDto;
 import com.ConsultaMedica.consulta.Models.MedicoModel;
 import com.ConsultaMedica.consulta.Models.PacienteModel;
 import com.ConsultaMedica.consulta.Models.SecretariaModel;
@@ -20,24 +22,24 @@ public class SessionController {
         this.sessionService = sessionService;
     }
     @PostMapping("/create/medico")
-    public ResponseEntity<Object> saveMedico(@RequestBody @Valid UsuarioDto usuarioDto){
+    public ResponseEntity<Object> saveMedico(@RequestBody @Valid MedicoDto medicoDto){
         //colocar handle aqui
         var medicoModel = new MedicoModel();
-        BeanUtils.copyProperties(usuarioDto, medicoModel);
+        BeanUtils.copyProperties(medicoDto, medicoModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(sessionService.createMedico(medicoModel));
     }
     @PostMapping("/create/paciente")
-    public ResponseEntity<Object> savePaciente(@RequestBody @Valid UsuarioDto usuarioDto){
+    public ResponseEntity<Object> savePaciente(@RequestBody @Valid PacienteDto pacienteDto){
         //colocar handle aqui
         var pacienteModel = new PacienteModel();
-        BeanUtils.copyProperties(usuarioDto, pacienteModel);
+        BeanUtils.copyProperties(pacienteDto, pacienteModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(sessionService.createPaciente(pacienteModel));
     }
     @PostMapping("/create/secretaria")
-    public ResponseEntity<Object> saveSecretaria(@RequestBody @Valid UsuarioDto usuarioDto){
+    public ResponseEntity<Object> saveSecretaria(@RequestBody @Valid SecretariaDto secretariaDto){
         //colocar handle aqui
         var secretariaModel = new SecretariaModel();
-        BeanUtils.copyProperties(usuarioDto, secretariaModel);
+        BeanUtils.copyProperties(secretariaDto, secretariaModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(sessionService.createSecretaria(secretariaModel));
     }
 }

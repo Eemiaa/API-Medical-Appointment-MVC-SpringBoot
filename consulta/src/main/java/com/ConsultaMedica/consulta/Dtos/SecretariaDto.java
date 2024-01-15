@@ -12,11 +12,16 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-public class UsuarioDto {
+public class SecretariaDto {
     @NotBlank
     @Size(max = 45)
     @JsonProperty("nome")
     private String nome;
+
+    @NotBlank
+    @Size(max = 8)
+    @JsonProperty("cep")
+    private String cep;
 
     @NotBlank
     @Size(max = 11)
@@ -27,9 +32,4 @@ public class UsuarioDto {
     @Size(max = 13)
     @JsonProperty("telefone")
     private String telefone;
-
-    @NotBlank
-    @Size(max = 45)
-    @JsonProperty("crm")
-    private String crm;
 }

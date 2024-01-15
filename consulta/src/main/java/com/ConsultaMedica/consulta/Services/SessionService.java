@@ -23,7 +23,10 @@ public class SessionService {
 
     @Transactional
     public MedicoModel createMedico(MedicoModel medicoModel) {
-        return medicoRepository.save(medicoModel);
+        //handle aqui
+        var response = medicoRepository.save(medicoModel);
+        System.out.println(response);
+        return response;
     }
     public PacienteModel createPaciente(PacienteModel pacienteModel) {
         return pacienteRepository.save(pacienteModel);

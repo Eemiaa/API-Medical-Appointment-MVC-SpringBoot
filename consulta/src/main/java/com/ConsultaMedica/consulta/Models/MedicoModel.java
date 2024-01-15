@@ -12,7 +12,7 @@ import java.util.UUID;
 @Table(name = "MEDICO")
 @Getter
 @Setter
-public class MedicoModel {
+public class MedicoModel{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
