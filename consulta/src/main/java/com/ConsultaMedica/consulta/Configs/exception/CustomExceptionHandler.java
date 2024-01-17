@@ -1,5 +1,6 @@
 package com.ConsultaMedica.consulta.Configs.exception;
 
+import com.ConsultaMedica.consulta.Configs.exception.sessionException.UserAlreadyRegistered;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -31,11 +32,11 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
         return new ResponseEntity<>(apiErrorMessage, apiErrorMessage.getStatus());
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<Object> handleUserNotFoundException(
-            UserNotFoundException exception, WebRequest request) {
+    @ExceptionHandler(UserAlreadyRegistered.class)
+    public ResponseEntity<Object> handleUserAreadyRegistred(
+            UserAlreadyRegistered exception, WebRequest request) {
 
-        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
+        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
 
         return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
     }

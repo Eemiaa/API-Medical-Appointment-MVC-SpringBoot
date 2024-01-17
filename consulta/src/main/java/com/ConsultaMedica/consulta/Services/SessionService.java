@@ -1,5 +1,6 @@
 package com.ConsultaMedica.consulta.Services;
 
+import com.ConsultaMedica.consulta.Configs.exception.sessionException.UserAlreadyRegistered;
 import com.ConsultaMedica.consulta.Models.MedicoModel;
 import com.ConsultaMedica.consulta.Models.PacienteModel;
 import com.ConsultaMedica.consulta.Models.SecretariaModel;
@@ -7,6 +8,7 @@ import com.ConsultaMedica.consulta.Repositories.MedicoRepository;
 import com.ConsultaMedica.consulta.Repositories.PacienteRepository;
 import com.ConsultaMedica.consulta.Repositories.SecretariaRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,15 +25,21 @@ public class SessionService {
 
     @Transactional
     public MedicoModel createMedico(MedicoModel medicoModel) {
-        //handle aqui
-        var response = medicoRepository.save(medicoModel);
-        System.out.println(response);
-        return response;
+        if(medicoRepository.existsByCrm(medicoModel.getCrm())){
+            throw new UserAlreadyRegistered("Médico");
+        }
+        return medicoRepository.save(medicoModel);
     }
     public PacienteModel createPaciente(PacienteModel pacienteModel) {
+        if(pacienteRepository.existsByCpf(pacienteModel.getCpf())){
+            throw new UserAlreadyRegistered("Paciente");
+        }
         return pacienteRepository.save(pacienteModel);
     }
     public SecretariaModel createSecretaria(SecretariaModel secretariaModel){
+        if(secretariaRepository.existsByCpf(secretariaModel.getCpf())){
+            throw new UserAlreadyRegistered("Secretária");
+        }
         return secretariaRepository.save(secretariaModel);
     }
 }

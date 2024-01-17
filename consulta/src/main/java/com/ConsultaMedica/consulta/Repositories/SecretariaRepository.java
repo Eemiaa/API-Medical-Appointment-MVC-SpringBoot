@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface SecretariaRepository extends JpaRepository<SecretariaModel, UUID> {
+    boolean existsByCpf(String cpf);
 }
