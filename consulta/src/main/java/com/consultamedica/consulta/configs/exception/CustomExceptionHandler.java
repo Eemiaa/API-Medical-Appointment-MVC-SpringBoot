@@ -33,22 +33,16 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
         return new ResponseEntity<>(apiErrorMessage, apiErrorMessage.getStatus());
     }
 
-    @ExceptionHandler(UserAlreadyRegistered.class)
-    public ResponseEntity<Object> handleUserAreadyRegistred(
-            UserAlreadyRegistered exception, WebRequest request) {
-
-        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
-
-        return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
+    @ExceptionHandler(NotFound.class)
+    public ResponseEntity<ApiErrorMessage> notFound(NotFound ex) {
+        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.NOT_FOUND, ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiErrorMessage);
     }
 
-    @ExceptionHandler(NotFound.class)
-    public ResponseEntity<Object> notFound(
-            NotFound exception, WebRequest request) {
-
-        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.CONFLICT, exception.getMessage());
-
-        return new ResponseEntity<>(apiErrorMessage, new HttpHeaders(), apiErrorMessage.getStatus());
+    @ExceptionHandler(UserAlreadyRegistered.class)
+    public ResponseEntity<ApiErrorMessage> userAlreadyRegistered(UserAlreadyRegistered ex) {
+        ApiErrorMessage apiErrorMessage = new ApiErrorMessage(HttpStatus.CONFLICT, ex.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(apiErrorMessage);
     }
 
 }
